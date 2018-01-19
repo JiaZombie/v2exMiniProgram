@@ -1,9 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/2048/2048"
-    
+    "pages/news/news",
+    "pages/nodes/nodes"
   ],
   "window":{
     "navigationBarBackgroundColor":"#ffffff",
@@ -19,10 +18,13 @@
     "backgroundColor": "#ffffff",
     "list": [{
       "pagePath": "pages/index/index",
-      "text": "游戏"
+      "text": "最热主题"
     }, {
-      "pagePath": "pages/logs/logs",
-      "text": "日志"
+      "pagePath": "pages/news/news",
+      "text": "最新主题"
+    }, {
+    "pagePath": "pages/nodes/nodes",
+    "text": "节点信息"
     }]
   },
   "networkTimeout": {

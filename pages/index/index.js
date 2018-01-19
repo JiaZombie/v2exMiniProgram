@@ -4,7 +4,7 @@ var app = getApp();
 var config = {
     data: {
         disable: false,
-        gameList: ['2048']
+        gameList: ['最新主题']
     },
 
     onLoad: function() {
