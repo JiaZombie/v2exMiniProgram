@@ -1,9 +1,7 @@
 <!--index.wxml-->
+页面渲染后还没请求到数据。。。
 <view class="container">
-  	
-	<view wx:for-items="{{gameList}}" class="usermotto">
-	   
+	<view wx:for="{{themeList}}" wx:key="index" class="item">
+	   <text>title: {{item.title}}</text>
 	</view>
-
-	<text class="more">更多内容，敬请期待...</text>
 </view>

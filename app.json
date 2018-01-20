@@ -7,7 +7,7 @@
   "window":{
     "navigationBarBackgroundColor":"#ffffff",
     "navigationBarTextStyle":"#1AAD16",
-    "navigationBarTitleText":"微信接口功能演示",
+    "navigationBarTitleText":"v2ex",
     "backgroundColor":"#eeeeee",
     "backgroundTextStyle":"light"
   },
