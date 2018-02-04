@@ -1,7 +1,7 @@
 <!--index.wxml-->
-页面渲染后还没请求到数据。。。
-<view class="container">
+<scroll-view enable-back-to-top="true">
 	<view wx:for="{{themeList}}" wx:key="index" class="item">
-	   <text>title: {{item.title}}</text>
+  <image  src="{{item.member.avatar_normal}}" lazy-load="true" class="avatar"></image>
+	   <text>{{ item.title}}</text>
 	</view>
-</view>
+</scroll-view>

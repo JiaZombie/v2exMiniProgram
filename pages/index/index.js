@@ -13,7 +13,9 @@ var config = {
           url: "https://www.v2ex.com/api/topics/hot.json",
           success: function(res) {
             if (res.statusCode === 200) {
-              that.data.themeList = res.data;
+             that.setData({
+              themeList : res.data
+             });
             } else {
               that.data.errorMsg = res.errMsg;
             }
