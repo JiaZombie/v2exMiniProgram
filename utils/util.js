@@ -17,6 +17,14 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+
+// 跳转页面
+function redirect(url) {
+  wx.navigateTo({
+    url: url,
+  })
+}
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  redirect: redirect
 }

@@ -4,7 +4,8 @@
     "pages/news/news",
     "pages/nodes/nodes",
     "pages/user/user",
-    "pages/news/detail"
+    "pages/news/detail",
+    "pages/nodes/list"
   ],
   "window": {
     "navigationBarBackgroundColor": "#eeeeee",

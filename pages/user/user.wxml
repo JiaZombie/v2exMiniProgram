@@ -1,2 +1,29 @@
 <!--pages/users/user.wxml-->
-<text>pages/users/user.wxml</text>
+<view class='info'>
+  <view class='header'>
+    <image class='avatar' src="{{'https:' + member.avatar_normal}}"></image>
+    <view class='header-right'>
+      <text class='username'>{{member.username}}</text>
+      <text class='tagline'>{{member.tagline}}</text>
+      <text class="status">V2EX 第 {{member.id}} 号会员，加入于 {{member.created}}</text>
+    </view>
+  </view>
+  <view class='social'>
+    <text class='social_label' wx:if="{{member.website}}">{{member.website}}</text>
+    <text class='social_label' wx:if="{{member.twitter}}">{{member.twitter}}</text>
+    <text class='social_label' wx:if="{{member.psn}}">{{member.psn}}</text>
+    <text class='social_label' wx:if="{{member.github}}">{{member.github}}</text>
+    <text class='social_label' wx:if="{{member.btc}}">{{member.btc}}</text>
+    <text class='social_label' wx:if="{{member.location}}">{{member.location}}</text>
+    <text class='bio' wx:if="{{member.bio}}">{{member.bio}}</text>
+  </view>
+</view>
+<view class='topics' wx:for="topics" wx:key="key">
+  <view class='content'>
+    <navigator class='title' url="/pages/news/detail?id={{item.id}}">{{item.title}}</navigator>
+    <navigator class='nodename' url="/pages/nodes/list?node_id={{item.node.id}}">{{item.node.name}}</navigator>
+    <navigator class='username' url="/pages/user/user?username={{item.member.username}}">{{item.member.username}}</navigator>
+    <text class='created'>{{item.created}}</text>
+  </view>
+  <text class="reply">{{item.replies}}</text>
+</view>

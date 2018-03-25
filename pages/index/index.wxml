@@ -4,8 +4,8 @@
     <image class='avatar' src="{{'https:' + item.member.avatar_normal}}"></image>
     <view class='content'>
       <navigator class='title' url="/pages/news/detail?id={{item.id}}">{{item.title}}</navigator>
-      <navigator class='nodename' url="/pages/index/index?nodeid={{item.node.id}}">{{item.node.name}}</navigator>
-      <navigator class='username' url="/pages/user/user?id={{item.member.id}}">{{item.member.username}}</navigator>
+      <navigator class='nodename' url="/pages/nodes/list?node_id={{item.node.id}}">{{item.node.name}}</navigator>
+      <navigator class='username' url="/pages/user/user?username={{item.member.username}}">{{item.member.username}}</navigator>
     </view>
     <text class="reply">{{item.replies}}</text>
   </view>

@@ -1,0 +1,21 @@
+<!--pages/nodes/list.wxml-->
+<view class='info'>
+  <view class='header'>
+    <image class='avatar' src="{{'https:' + node.avatar_normal}}"></image>
+    <view class='header-right'>
+      <text class='username' wx:if="{{node.title}}">{{node.title}}</text>
+      <text class='tagline' wx:if="{{node.topics}}">总主题数：{{node.topics}}</text>
+      <text class="status" wx:if="{{node.header}}">{{node.header}}</text>
+    </view>
+  </view>
+</view>
+<view class='topics'>
+ <view wx:for="{{topics}}" wx:key="index" class="item">
+    <image class='avatar' src="{{'https:' + item.member.avatar_normal}}"></image>
+    <view class='content'>
+      <navigator class='title' url="/pages/news/detail?id={{item.id}}">{{item.title}}</navigator>
+      <navigator class='username' url="/pages/user/user?username={{item.member.username}}">{{item.member.username}}</navigator>
+    </view>
+    <text class="reply">{{item.replies}}</text>
+  </view>
+</view>

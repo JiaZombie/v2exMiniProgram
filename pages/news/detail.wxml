@@ -3,7 +3,7 @@
   <view class='header'>
     <text class='title'>{{topic.title}}</text>
     <image class='mini-avatar' src="{{'https:' + topic.member.avatar_normal}}"></image>
-    <text class='author'>{{topic.member.username}}</text>
+    <navigator class='author' url="/pages/user/user?username={{topic.member.username}}">{{topic.member.username}}</navigator>
     <text class='created'>{{topic.created}}</text>
     <text class='replynum'>{{topic.replies + ' 条回复'}}</text>
   </view>
@@ -13,7 +13,7 @@
   <view class='reply' wx:for="{{replies}}" wx:key="index">
     <image class='avatar' src="{{'https:' + item.member.avatar_normal}}"></image>
     <view class='reply-meta'>
-      <navigator class='author' url="/pages/user/user?id={{item.member.id}}">{{item.member.username}}</navigator>
+      <navigator class='author' url="/pages/user/user?username={{item.member.username}}">{{item.member.username}}</navigator>
       <text class='created'>{{item.created}}</text>
       <rich-text class='content' nodes="{{item.content_rendered}}"></rich-text>
     </view>

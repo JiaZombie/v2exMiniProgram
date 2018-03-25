@@ -1,11 +1,11 @@
-// pages/users/user.js
+// pages/nodes/list.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    member: {},
+    node: {},
     topics: []
   },
 
@@ -13,8 +13,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMemberInfo(options.username);
-    this.getMemberTopics(options.username);
+    this.getNodeInfo(options.node_id);
+    this.getNodeTopics(options.node_id);
   },
 
   /**
@@ -66,9 +66,9 @@ Page({
   
   },
   /**
-   * 请求会员基本信息
-   */
-  getMemberInfo: function (username) {
+ * 请求会员基本信息
+ */
+  getNodeInfo: function (nodeId) {
     var that = this;
     var app = getApp();
 
@@ -76,11 +76,11 @@ Page({
       app.loading();
 
       wx.request({
-        url: "https://www.v2ex.com/api/members/show.json?username=" + username,
+        url: "https://www.v2ex.com/api/nodes/show.json?id=" + nodeId,
         success: function (res) {
           if (res.statusCode === 200) {
             that.setData({
-              member: res.data
+              node: res.data
             });
           } else {
             wx.showToast({
@@ -101,13 +101,13 @@ Page({
   /**
    * 请求会员发表的主题
    */
-  getMemberTopics: function (username) {
+  getNodeTopics: function (nodeId) {
     var that = this;
     var app = getApp();
 
     try {
       wx.request({
-        url: "https://www.v2ex.com/api/topics/show.json?username=" + username,
+        url: "https://www.v2ex.com/api/topics/show.json?node_id=" + nodeId,
         success: function (res) {
           if (res.statusCode === 200) {
             that.setData({
