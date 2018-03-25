@@ -1,0 +1,3 @@
+<view class="node-wrap">
+<navigator class="node" wx:for="{{nodes}}" wx:key="key" wx:for-item="node" url="/pages/index/index?nodeid={{node.id}}">{{node.title}}</navigator>
+</view>
