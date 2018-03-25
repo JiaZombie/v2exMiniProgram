@@ -1,0 +1,50 @@
+/**index.wxss**/
+navigator {
+  display: unset;
+}
+.item {
+  box-shadow: 0px 2rpx 3rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 5pt;
+  text-align: left;
+  width: 90%;
+  padding: 5pt;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+.content {
+  margin:0 10px 0 10px;
+  flex:1 1 auto;
+}
+
+.avatar {
+  width: 48px;
+  height:48px;
+  flex-shrink: 0;
+}
+
+.title {
+  display:block;
+  color: #778087;
+}
+
+.nodename {
+  padding: 4px;
+  background-color: #f5f5f5;
+  color: #999;
+  font-size: 12px;
+}
+
+.username {
+  font-size: 12px;
+  color: #778087;
+  font-weight: bold;
+  margin: 2px 6px 2px 6px;
+}
+
+.item>.reply {
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 12px;
+  padding: 2px 10px 2px 10px;
+}

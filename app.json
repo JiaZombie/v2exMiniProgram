@@ -1,31 +1,37 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/news/news",
-    "pages/nodes/nodes"
+    "pages/nodes/nodes",
+    "pages/user/user",
+    "pages/news/detail"
   ],
-  "window":{
-    "navigationBarBackgroundColor":"#ffffff",
-    "navigationBarTextStyle":"#1AAD16",
-    "navigationBarTitleText":"v2ex",
-    "backgroundColor":"#eeeeee",
-    "backgroundTextStyle":"light"
+  "window": {
+    "navigationBarBackgroundColor": "#eeeeee",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "v2ex",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
   },
   "tabBar": {
     "color": "#353535",
     "selectedColor": "#3cc51f",
     "borderStyle": "white",
-    "backgroundColor": "#ffffff",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "最热主题"
-    }, {
-      "pagePath": "pages/news/news",
-      "text": "最新主题"
-    }, {
-    "pagePath": "pages/nodes/nodes",
-    "text": "节点信息"
-    }]
+    "backgroundColor": "#eeeeee",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "最热主题"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "text": "最新主题"
+      },
+      {
+        "pagePath": "pages/nodes/nodes",
+        "text": "节点信息"
+      }
+    ]
   },
   "networkTimeout": {
     "request": 10000,

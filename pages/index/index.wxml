@@ -1,7 +1,12 @@
 <!--index.wxml-->
-页面渲染后还没请求到数据。。。
 <view class="container">
-	<view wx:for="{{themeList}}" wx:key="index" class="item">
-	   <text>title: {{item.title}}</text>
-	</view>
+  <view wx:for="{{topics}}" wx:key="index" class="item">
+    <image class='avatar' src="{{'https:' + item.member.avatar_normal}}"></image>
+    <view class='content'>
+      <navigator class='title' url="/pages/news/detail?id={{item.id}}">{{item.title}}</navigator>
+      <navigator class='nodename' url="/pages/index/index?id={{item.node.id}}">{{item.node.name}}</navigator>
+      <navigator class='username' url="/pages/user/user?id={{item.member.id}}">{{item.member.username}}</navigator>
+    </view>
+    <text class="reply">{{item.replies}}</text>
+  </view>
 </view>
