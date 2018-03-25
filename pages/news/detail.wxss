@@ -23,7 +23,7 @@
 .content {
   margin-top: 10px;
   font-size: 14px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .embeded_image {
@@ -61,6 +61,7 @@
   display: flex;
   align-items: center;
   font-size: 16px;
+  overflow: auto;
 }
 
 .header + .content {
