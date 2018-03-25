@@ -14,6 +14,8 @@ Page({
    */
   onLoad: function (options) {
     var self = this;
+    var app = getApp();
+    var util = require('../../utils/util.js');
 
     app.loading();
 

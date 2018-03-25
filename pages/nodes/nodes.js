@@ -12,12 +12,19 @@ Page({
    */
   onLoad: function (options) {
     var self = this;
+    var app = getApp();
+
+    app.loading();
+
     wx.request({
       url: 'https://www.v2ex.com/api/nodes/all.json',
       success: function(res) {
        self.setData({
          nodes: res.data
        });
+      },
+      complete: function () {
+        wx.hideLoading()
       }
     })
   },

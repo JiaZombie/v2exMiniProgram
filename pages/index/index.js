@@ -9,7 +9,7 @@ var config = {
 
     onLoad: function(options) {
         var that = this;
-        // var nodeId = options.id;
+        // var nodeId = options.nodeid;
 
         try {
             app.loading();

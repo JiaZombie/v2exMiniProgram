@@ -10,4 +10,6 @@
   margin: 0px 5px 5px 0px;
   border-radius: 16px;
   border: 1px solid #e5e5e5;
+  font-size:14px;
+  flex: 1 1 auto;
 }
