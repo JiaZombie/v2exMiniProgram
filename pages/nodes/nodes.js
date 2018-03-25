@@ -4,14 +4,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    nodes: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var self = this;
+    wx.request({
+      url: 'https://www.v2ex.com/api/nodes/all.json',
+      success: function(res) {
+       self.setData({
+         nodes: res.data
+       });
+      }
+    })
   },
 
   /**

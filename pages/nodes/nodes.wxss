@@ -1,0 +1,13 @@
+.node-wrap {
+  display: flex;
+  margin: 10px;
+  flex-wrap:wrap;
+}
+
+.node {
+  color: #778087;
+  padding: 4px 10px 4px 10px;
+  margin: 0px 5px 5px 0px;
+  border-radius: 16px;
+  border: 1px solid #e5e5e5;
+}
