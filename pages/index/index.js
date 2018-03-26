@@ -4,7 +4,6 @@ var util = require('../../utils/util.js');
 
 var config = {
   data: {
-    errorMsg: '',
     topics: []
   },
   onLoad: function (options) {
@@ -17,13 +16,20 @@ var config = {
       // 请求数据
       wx.request({
         url: "https://www.v2ex.com/api/topics/hot.json",
+        header: {
+          'cache-control': 'max-age=120'
+        },
         success: function (res) {
-          if (res.statusCode === 200) {
+          if (!res.data.rate_limit) {
             that.setData({
               topics: res.data
             });
           } else {
-            that.data.errorMsg = res.errMsg;
+            wx.showToast({
+              title: res.data.message,
+              icon: 'none',
+              duration: 2000
+            })
           }
         },
         complete: function () {

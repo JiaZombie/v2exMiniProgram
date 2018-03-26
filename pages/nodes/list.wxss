@@ -49,7 +49,7 @@ navigator {
   box-shadow: 0px 2rpx 3rpx rgba(0, 0, 0, 0.1);
   margin-bottom: 5pt;
   text-align: left;
-  width: 90%;
+  margin: 0 6px 0 6px;
   padding: 5pt;
   display: flex;
   align-items: center;

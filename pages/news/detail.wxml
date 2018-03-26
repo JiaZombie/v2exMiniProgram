@@ -1,10 +1,11 @@
 <!--pages/news/detail.wxml-->
+<wxs src="../../utils/util.wxs" module="util"></wxs>
 <view class='container'>
   <view class='header'>
     <text class='title'>{{topic.title}}</text>
     <image class='mini-avatar' src="{{'https:' + topic.member.avatar_normal}}"></image>
     <navigator class='author' url="/pages/user/user?username={{topic.member.username}}">{{topic.member.username}}</navigator>
-    <text class='created'>{{topic.created}}</text>
+    <text class='created'>{{util.timeSince(topic.created)}}</text>
     <text class='replynum'>{{topic.replies + ' 条回复'}}</text>
   </view>
   <view class='content'>
@@ -14,7 +15,7 @@
     <image class='avatar' src="{{'https:' + item.member.avatar_normal}}"></image>
     <view class='reply-meta'>
       <navigator class='author' url="/pages/user/user?username={{item.member.username}}">{{item.member.username}}</navigator>
-      <text class='created'>{{item.created}}</text>
+      <text class='created'>{{util.timeSince(item.created)}}</text>
       <rich-text class='content' nodes="{{item.content_rendered}}"></rich-text>
     </view>
     <text class="flooer-id">{{1 + index}}</text>

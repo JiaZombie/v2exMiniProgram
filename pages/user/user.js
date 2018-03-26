@@ -13,22 +13,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(this.topics)
     this.getMemberInfo(options.username);
     this.getMemberTopics(options.username);
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
   },
 
   /**
@@ -77,6 +77,9 @@ Page({
 
       wx.request({
         url: "https://www.v2ex.com/api/members/show.json?username=" + username,
+        header: {
+          'cache-control':'max-age=120'
+        },
         success: function (res) {
           if (res.statusCode === 200) {
             that.setData({
@@ -103,7 +106,6 @@ Page({
    */
   getMemberTopics: function (username) {
     var that = this;
-    var app = getApp();
 
     try {
       wx.request({

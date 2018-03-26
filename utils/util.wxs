@@ -1,0 +1,25 @@
+function timeSince(timestamp) {
+  var now = getDate().valueOf() / 1000; // 当前时间戳（秒）
+  var diff = now - timestamp; // 时间差
+
+  var periods = [
+    [parseInt(diff / 31536000), '年前'],
+    [parseInt(diff / 2592000), '个月前'],
+    [parseInt(diff / 18144000), '周前'],
+    [parseInt(diff / 86400), '天前'],
+    [parseInt(diff / 3600), '小时前'],
+    [parseInt(diff / 60), '分钟前'],
+    [parseInt(diff), '秒前'],
+  ];
+
+  for(var i = 0; i < 7; i++) {
+      if (periods[i][0]) {
+        return periods[i].join(' ');
+      }
+  }
+  return '刚刚';
+}
+
+module.exports = {
+  timeSince: timeSince
+};
