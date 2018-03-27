@@ -1,6 +1,6 @@
 // pages/news/detail.js
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -33,6 +33,8 @@ Page({
           self.setData({
             topic: res.data[0]
           });
+          // 解析md内容
+          WxParse.wxParse('content', 'html', self.data.topic.content_rendered, self, 5);
         } else {
           wx.showToast({
             title: res.data.message,
@@ -53,6 +55,14 @@ Page({
           self.setData({
             replies: res.data
           });
+          var replies = self.data.replies;
+          // 解析md内容
+          for (var i = 0; i < replies.length; i++) {
+            WxParse.wxParse('reply' + i, 'html', replies[i].content_rendered, self);
+            if (i === replies.length - 1) {
+              WxParse.wxParseTemArray("replyTemArray", 'reply', replies.length, self)
+            }
+          }
         }
       }
     });

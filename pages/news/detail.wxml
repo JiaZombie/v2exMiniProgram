@@ -1,5 +1,7 @@
 <!--pages/news/detail.wxml-->
 <wxs src="../../utils/util.wxs" module="util"></wxs>
+<import src="/wxParse/wxParse.wxml"/>
+
 <view class='container'>
   <view class='header'>
     <text class='title'>{{topic.title}}</text>
@@ -9,15 +11,19 @@
     <text class='replynum'>{{topic.replies + ' 条回复'}}</text>
   </view>
   <view class='content'>
-    <rich-text nodes="{{topic.content_rendered}}"></rich-text>
+    <!-- <rich-text nodes="{{topic.content_rendered}}"></rich-text> -->
+    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
   </view>
   <view class='reply' wx:for="{{replies}}" wx:key="index">
     <image class='avatar' src="{{'https:' + item.member.avatar_normal}}"></image>
     <view class='reply-meta'>
       <navigator class='author' url="/pages/user/user?username={{item.member.username}}">{{item.member.username}}</navigator>
       <text class='created'>{{util.timeSince(item.created)}}</text>
-      <rich-text class='content' nodes="{{item.content_rendered}}"></rich-text>
+      <!-- <rich-text class='content' nodes="{{item.content_rendered}}"></rich-text> -->
+      <view class='content'>
+      <template is="wxParse" data="{{wxParseData:replyTemArray[index]}}"/>
+      </view>
     </view>
-    <text class="flooer-id">{{1 + index}}</text>
+    <text class="floor-id">{{1 + index}}</text>
   </view>
 </view>
