@@ -8,7 +8,7 @@
     <image class='mini-avatar' src="{{'https:' + topic.member.avatar_normal}}"></image>
     <navigator class='author' url="/pages/user/user?username={{topic.member.username}}">{{topic.member.username}}</navigator>
     <text class='created' wx:if='{{topic.created}}'>{{util.timeSince(topic.created)}}</text>
-    <text class='replynum' wx:if='{{topic.replies}}'>{{topic.replies + ' 条回复'}}</text>
+    <text class='replynum' wx:if='{{replies.length}}'>{{replies.length + ' 条回复'}}</text>
   </view>
   <view class='content'>
     <template wx:if="{{content}}" is="wxParse" data="{{wxParseData:content.nodes}}"/>

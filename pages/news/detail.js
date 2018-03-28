@@ -9,7 +9,7 @@ Page({
   data: {
     topic: {},
     replies: [],
-    replyPage: 1,
+    replyPage: 0,
     topicId: ''
   },
 
@@ -61,15 +61,16 @@ Page({
    */
   onReachBottom: function () {
     if (this.data.replies.length < this.data.topic.replies) {
-      this.data.replyPage++;
+      0 === this.data.replyPage ? this.data.replyPage = 2 : this.data.replyPage++;
       this.getReplies();
     }
   },
  getReplies: function() {
    var self = this;
+   var url = 'https://www.v2ex.com/api/replies/show.json?topic_id=' + self.data.topicId + '&page=' + self.data.replyPage;
    // 请求指定主题的评论
    wx.request({
-     url: 'https://www.v2ex.com/api/replies/show.json?topic_id=' + self.data.topicId + '&page=' + self.data.replyPage,
+     url: url,
      success: function (res) {
        if (!res.data.rate_limit) {
          self.setData({
