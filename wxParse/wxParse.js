@@ -84,21 +84,33 @@ function calMoreImageInfo(e, idx, that, bindName) {
   var temImages = temData.images;
   //因为无法获取view宽度 需要自定义padding进行计算，稍后处理
   var recal = wxAutoImageCal(e.detail.width, e.detail.height,that,bindName); 
-  // temImages[idx].width = recal.imageWidth;
-  // temImages[idx].height = recal.imageheight; 
-  // temData.images = temImages;
-  // var bindData = {};
-  // bindData[bindName] = temData;
-  // that.setData(bindData);
   var index = temImages[idx].index
   var key = `${bindName}`
   for (var i of index.split('.')) key+=`.nodes[${i}]`
   var keyW = key + '.width'
   var keyH = key + '.height'
+  console.log(keyW);
   that.setData({
     [keyW]: recal.imageWidth,
     [keyH]: recal.imageheight,
   })
+  // ====v2ex非官方版改造=====
+  // 更新解析的回复里图片的宽高
+  var replieIndexNum = `${bindName}`.match(/\d+/);
+  if (replieIndexNum) {
+    var rplkey = 'parsedReplies[' + replieIndexNum[0] + ']';
+
+    for (var i of index.split('.')) rplkey += `[${i}]`;
+
+    var replyW = rplkey + '.width';
+    var replyH = rplkey + '.height';
+
+    that.setData({
+      [replyW]:recal.imageWidth,
+      [replyH]: recal.imageheight,
+    });
+  }
+  // =========================
 }
 
 // 计算视觉优先的图片宽高

@@ -7,22 +7,22 @@
     <text class='title'>{{topic.title}}</text>
     <image class='mini-avatar' src="{{'https:' + topic.member.avatar_normal}}"></image>
     <navigator class='author' url="/pages/user/user?username={{topic.member.username}}">{{topic.member.username}}</navigator>
-    <text class='created'>{{util.timeSince(topic.created)}}</text>
-    <text class='replynum'>{{topic.replies + ' 条回复'}}</text>
+    <text class='created' wx:if='{{topic.created}}'>{{util.timeSince(topic.created)}}</text>
+    <text class='replynum' wx:if='{{topic.replies}}'>{{topic.replies + ' 条回复'}}</text>
   </view>
   <view class='content'>
-    <!-- <rich-text nodes="{{topic.content_rendered}}"></rich-text> -->
-    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+    <template wx:if="{{content}}" is="wxParse" data="{{wxParseData:content.nodes}}"/>
+    <rich-text wx:else nodes="{{topic.content_rendered}}"></rich-text>
   </view>
-  <view class='reply' wx:for="{{replies}}" wx:key="index">
+  <view class='reply' wx:for="{{replies}}" wx:key="id">
     <image class='avatar' src="{{'https:' + item.member.avatar_normal}}"></image>
     <view class='reply-meta'>
       <navigator class='author' url="/pages/user/user?username={{item.member.username}}">{{item.member.username}}</navigator>
       <text class='created'>{{util.timeSince(item.created)}}</text>
-      <!-- <rich-text class='content' nodes="{{item.content_rendered}}"></rich-text> -->
-      <view class='content'>
-      <template is="wxParse" data="{{wxParseData:replyTemArray[index]}}"/>
+      <view class='content' id="{{'reply'+index}}" wx:if="{{parsedReplies[index]}}">
+        <template is="wxParse" data="{{wxParseData:parsedReplies[index]}}"/>
       </view>
+      <rich-text wx:else class='content' nodes="{{item.content_rendered}}"></rich-text>
     </view>
     <text class="floor-id">{{1 + index}}</text>
   </view>

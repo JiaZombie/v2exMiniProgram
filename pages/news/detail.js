@@ -1,5 +1,7 @@
 // pages/news/detail.js
 var WxParse = require('../../wxParse/wxParse.js');
+var util = require('../../utils/util.js');
+
 Page({
   /**
    * 页面的初始数据
@@ -33,8 +35,10 @@ Page({
           self.setData({
             topic: res.data[0]
           });
-          // 解析md内容
-          WxParse.wxParse('content', 'html', self.data.topic.content_rendered, self, 5);
+          if (util.isNeedParse(self.data.topic.content_rendered)) {
+            // 解析html内容
+            WxParse.wxParse('content', 'html', self.data.topic.content_rendered, self, 5);
+          }
         } else {
           wx.showToast({
             title: res.data.message,
@@ -48,24 +52,7 @@ Page({
       }
     })
     // 请求指定主题的评论
-    wx.request({
-      url: 'https://www.v2ex.com/api/replies/show.json?topic_id=' + options.id,
-      success: function (res) {
-        if (!res.data.rate_limit) {
-          self.setData({
-            replies: res.data
-          });
-          var replies = self.data.replies;
-          // 解析md内容
-          for (var i = 0; i < replies.length; i++) {
-            WxParse.wxParse('reply' + i, 'html', replies[i].content_rendered, self);
-            if (i === replies.length - 1) {
-              WxParse.wxParseTemArray("replyTemArray", 'reply', replies.length, self)
-            }
-          }
-        }
-      }
-    });
+    this.getReplies();
   },
 
 
@@ -73,27 +60,39 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    var self = this;
-    if (self.data.replies.length < self.data.topic.replies) {
-      self.data.replyPage++;
-      // 请求指定主题的评论
-      wx.request({
-        url: 'https://www.v2ex.com/api/replies/show.json?topic_id=' + self.data.topicId + '&page=' + self.data.replyPage,
-        success: function (res) {
-          if (!res.data.rate_limit) {
-            self.setData({
-              replies: res.data
-            });
-          } else {
-            wx.showToast({
-              title: res.data.message,
-              icon: 'none',
-              duration: 2000
-            })
-          }
-        }
-      });
+    if (this.data.replies.length < this.data.topic.replies) {
+      this.data.replyPage++;
+      this.getReplies();
     }
   },
-
+ getReplies: function() {
+   var self = this;
+   // 请求指定主题的评论
+   wx.request({
+     url: 'https://www.v2ex.com/api/replies/show.json?topic_id=' + self.data.topicId + '&page=' + self.data.replyPage,
+     success: function (res) {
+       if (!res.data.rate_limit) {
+         self.setData({
+           replies: res.data
+         });
+         var replies = self.data.replies;
+         // 解析html内容
+         for (var i = 0; i < replies.length; i++) {
+           if (util.isNeedParse(replies[i].content_rendered)) {
+             WxParse.wxParse('reply' + i, 'html', replies[i].content_rendered, self, 5);
+           }
+           if (i === replies.length - 1) {
+             util.utilParseTemArray('parsedReplies', 'reply', replies.length, self);
+           }
+         }
+       } else {
+         wx.showToast({
+           title: res.data.message,
+           icon: 'none',
+           duration: 2000
+         })
+       }
+     }
+   });
+ }
 })
