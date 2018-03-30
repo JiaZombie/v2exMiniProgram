@@ -6,7 +6,8 @@ Page({
    */
   data: {
     node: {},
-    topics: []
+    topics: [],
+    nodeId:''
   },
 
   /**
@@ -15,56 +16,18 @@ Page({
   onLoad: function (options) {
     this.getNodeInfo(options.node_id);
     this.getNodeTopics(options.node_id);
+    this.setData({
+      nodeId: options.node_id
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
+/**
+ * 下拉刷新
+ */
   onPullDownRefresh: function () {
-  
+    this.onLoad({ node_id: this.data.nodeId });
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   /**
  * 请求会员基本信息
  */
@@ -82,6 +45,9 @@ Page({
             that.setData({
               node: res.data
             });
+            wx.setNavigationBarTitle({
+              title: that.data.node.title
+            })
           } else {
             wx.showToast({
               title: 'Member not found',
@@ -92,6 +58,7 @@ Page({
         },
         complete: function () {
           wx.hideLoading()
+          wx.stopPullDownRefresh()
         }
       });
     } catch (e) {

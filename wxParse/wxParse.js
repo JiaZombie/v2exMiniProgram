@@ -89,7 +89,6 @@ function calMoreImageInfo(e, idx, that, bindName) {
   for (var i of index.split('.')) key+=`.nodes[${i}]`
   var keyW = key + '.width'
   var keyH = key + '.height'
-  console.log(keyW);
   that.setData({
     [keyW]: recal.imageWidth,
     [keyH]: recal.imageheight,

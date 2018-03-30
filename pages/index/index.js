@@ -34,15 +34,20 @@ var config = {
         },
         complete: function () {
           wx.hideLoading()
+          wx.stopPullDownRefresh()
         }
       });
     } catch (e) {
       // Do something when catch error
     }
   },
-  onReady: function () {
-    // 页面渲染完毕
-    var that = this;
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh: function () {
+    wx.reLaunch({
+      url: 'index',
+    });
   }
 };
 Page(config);

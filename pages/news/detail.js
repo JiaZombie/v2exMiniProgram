@@ -39,6 +39,9 @@ Page({
             // 解析html内容
             WxParse.wxParse('content', 'html', self.data.topic.content_rendered, self, 5);
           }
+          wx.setNavigationBarTitle({
+            title: self.data.topic.title
+          })
         } else {
           wx.showToast({
             title: res.data.message,
@@ -49,12 +52,18 @@ Page({
       },
       complete: function () {
         wx.hideLoading()
+        wx.stopPullDownRefresh()
       }
     })
     // 请求指定主题的评论
     this.getReplies();
   },
-
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh: function () {
+    this.onLoad({ id: this.data.topicId});
+  },
 
   /**
    * 页面上拉触底事件的处理函数
@@ -65,6 +74,9 @@ Page({
       this.getReplies();
     }
   },
+  /**
+   * 获取评论
+   */
  getReplies: function() {
    var self = this;
    var url = 'https://www.v2ex.com/api/replies/show.json?topic_id=' + self.data.topicId + '&page=' + self.data.replyPage;
@@ -95,5 +107,38 @@ Page({
        }
      }
    });
+ },
+ /**
+  * 转发
+  */
+ onShareAppMessage: function (res) {
+   return {
+     title: this.data.topic.title,
+     path: '/pages/news/detail?id=' + this.data.topicId,
+     success: function (res) {
+       // 转发成功
+       wx.showToast({
+         title: '转发成功',
+         icon: 'success',
+         duration: 2000
+       })
+     },
+     fail: function (res) {
+       // 转发失败
+       wx.showToast({
+         title: '转发失败',
+         icon: 'none',
+         duration: 2000
+       })
+     }
+   }
+ },
+ wxParseTagATap: function(event) {
+     wx.setClipboardData({
+       data: event.currentTarget.dataset.src,
+       success: wx.showToast({
+         title: '已复制链接',
+       })
+     });
  }
 })

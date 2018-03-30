@@ -53,7 +53,6 @@ function utilParseTemArray(temArrayName, bindNameReg, total, that) {
     if (temData[bindNameReg + i]) {
       var simArr = temData[bindNameReg + i].nodes;
       array[i] = simArr;
-      // delete that.data[bindNameReg + i];
     }
   }
   

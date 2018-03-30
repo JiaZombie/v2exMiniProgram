@@ -12,7 +12,8 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "v2ex",
     "backgroundColor": "#eeeeee",
-    "backgroundTextStyle": "light"
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#353535",
