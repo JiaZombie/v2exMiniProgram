@@ -2,13 +2,9 @@
 一个 [v2ex](https://www.v2ex.com) 社区的非官方版小程序。
 
 ## 使用 ##
+1. `clone` 到本地
+2. 使用微信web开发者工具打开。 
 
-~~~扫描小程序码 ![v2ex非官方版 小程序码]()~~~  
-(审核中。。。)
+(审核未通过)
 ## 预览 ##
-![最热主题](preview/hots.png)
-![最新主题](preview/latest.png)
-![全部节点](preview/nodes.png)
-![节点详情](preview/nodeinfo.png)
-![用户详情](preview/userinfo.png)
-![主题详情](preview/detail.png)
+![预览](preview/ezgif.com-optimize.gif)
